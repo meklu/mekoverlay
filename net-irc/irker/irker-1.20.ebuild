@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit python
+inherit python eutils
 
 DESCRIPTION="Submission tools for IRC notifications"
 HOMEPAGE="http://www.catb.org/esr/irker/"
