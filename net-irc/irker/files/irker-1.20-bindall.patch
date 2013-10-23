@@ -1,0 +1,11 @@
+--- irkerd	2013-10-23 21:53:23.000000000 +0000
++++ irkerd	2013-10-23 21:52:53.000000000 +0000
+@@ -28,7 +28,7 @@
+ """
+ # These things might need tuning
+ 
+-HOST = "localhost"
++HOST = "0.0.0.0"
+ PORT = 6659
+ 
+ XMIT_TTL = (3 * 60 * 60)	# Time to live, seconds from last transmit
