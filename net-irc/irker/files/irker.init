@@ -1,7 +1,7 @@
 #!/sbin/runscript
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irker/files/irker.init,v 1.1 2012/10/13 05:53:35 patrick Exp $
+# $Header: $
 
 command="/usr/bin/irkerd"
 command_args="${IRKERD_OPTS}"
@@ -11,16 +11,3 @@ pidfile="/var/run/${SVCNAME}.pid"
 depend() {
 	use net
 }
-
-#start () {
-#	ebegin "Starting irkerd"
-#	start-stop-daemon --start -m -p $pidfile -b --quiet --exec $command ${IRKERD_OPTS}
-#	eend $?
-#}
-
-#stop() {
-#        ebegin "Stopping irkerd"
-#        start-stop-daemon --stop -p $pidfile --quiet
-#        eend $?
-#}
-
