@@ -16,7 +16,7 @@ IUSE="bindall"
 DEPEND="app-text/docbook-xml-dtd:4.1.2
 	app-text/xmlto"
 RDEPEND="=dev-lang/python-2*
-	dev-python/irc"
+	dev-python/simplejson"
 
 src_prepare() {
 	if use bindall ; then
