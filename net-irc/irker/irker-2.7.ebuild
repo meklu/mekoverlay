@@ -19,9 +19,8 @@ RDEPEND="=dev-lang/python-2*
 	dev-python/simplejson"
 
 src_prepare() {
-	if use bindall ; then
-		epatch "${FILESDIR}"/${P}-bindall.patch
-	fi
+	# allow e.g. configuration changes via epatch_user
+	epatch_user
 }
 
 src_install() {
