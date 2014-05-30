@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit python eutils
 
@@ -19,9 +19,6 @@ RDEPEND="=dev-lang/python-2*
 	dev-python/simplejson"
 
 src_prepare() {
-	if use bindall ; then
-		epatch "${FILESDIR}"/${P}-bindall.patch
-	fi
 	# allow e.g. configuration changes via epatch_user
 	epatch_user
 }
