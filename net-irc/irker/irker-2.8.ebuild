@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -16,6 +16,7 @@ IUSE="bindall"
 DEPEND="app-text/docbook-xml-dtd:4.1.2
 	app-text/xmlto"
 RDEPEND="=dev-lang/python-2*
+	virtual/python-argparse
 	dev-python/simplejson"
 
 src_prepare() {
