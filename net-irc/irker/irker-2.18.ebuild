@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="bindall"
 DEPEND="app-text/docbook-xml-dtd:4.1.2
 	app-text/xmlto"
-RDEPEND="=dev-lang/python-2*
+RDEPEND="dev-lang/python
 	dev-python/simplejson"
 
 src_prepare() {
@@ -24,7 +24,6 @@ src_prepare() {
 }
 
 src_install() {
-	python_convert_shebangs 2 irkerd irkerhook.py
 	emake DESTDIR="${D}" install
 	# the irkerhook.py is not installed with the default makefile
 	dobin irkerhook.py
