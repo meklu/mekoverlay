@@ -1,10 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
+PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
 
-inherit python eutils
+inherit python-r1 eutils
 
 DESCRIPTION="Submission tools for IRC notifications"
 HOMEPAGE="http://www.catb.org/esr/irker/"
