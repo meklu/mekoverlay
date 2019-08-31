@@ -1,39 +1,46 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI=4
+EAPI=6
 
-inherit eutils git-2 toolchain-funcs
+inherit toolchain-funcs
 
 DESCRIPTION="sophisticated graphical program which corrects your miss typing"
-HOMEPAGE="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html http://www.izumix.org.uk/sl/"
-EGIT_REPO_URI="git://github.com/mtoyoda/sl.git"
+HOMEPAGE="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html https://github.com/mtoyoda/sl/"
 
-LICENSE="freedist"
+if [ x"${PV}" != x"9999" ] ; then
+	SRC_URI="https://github.com/mtoyoda/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="alpha amd64 ~arm hppa ppc ppc64 ~riscv sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+else
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/mtoyoda/sl.git"
+fi
+
+LICENSE="Toyoda"
 SLOT="0"
-KEYWORDS="alpha amd64 hppa ppc ppc64 sparc x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="debug linguas_ja"
 
-DEPEND="sys-libs/ncurses"
-RDEPEND="${DEPEND}"
+IUSE="l10n_ja"
 
-S=${WORKDIR}/${PN}
+RDEPEND="sys-libs/ncurses:0="
+DEPEND="${RDEPEND}"
 
-pkg_setup() {
-	tc-export CC
-	use debug && append-cppflags -DDEBUG
+DOCS=( README.md )
+
+src_prepare() {
+	default
+	sed \
+		-e "s/-lncurses/$($(tc-getPKG_CONFIG) --libs ncurses)/" \
+		-i Makefile || die
 }
 
 src_install() {
-	dobin sl
+	dobin "${PN}"
+	doman "${PN}.1"
 
-	dodoc README.md
-	newman sl.1 sl.1
-
-	if use linguas_ja ; then
-		dodoc README.ja.md
-		insinto /usr/share/man/ja/man1
-		newins sl.1.ja sl.1
+	if use l10n_ja; then
+		newman "${PN}.1.ja" "${PN}.ja.1"
+		DOCS+=( README.ja.md )
 	fi
+
+	einstalldocs
 }
